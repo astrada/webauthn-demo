@@ -14,6 +14,6 @@ Start the client:
 npm run dev
 ```
 
-First factor:
-Username: `test`
+First factor:\
+Username: `test`\
 Password: `test`
