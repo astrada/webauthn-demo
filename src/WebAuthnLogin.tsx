@@ -58,7 +58,7 @@ const WebAuthnLogin: React.FC = () => {
             const options = await optionsResponse.json();
 
             // Start WebAuthn authentication
-            const authResponse = await startAuthentication(options);
+            const authResponse = await startAuthentication({optionsJSON: options});
 
             // Verify with server
             const verificationResponse = await fetch('/api/auth/webauthn/verify', {
@@ -70,7 +70,7 @@ const WebAuthnLogin: React.FC = () => {
             if (!verificationResponse.ok) throw new Error('WebAuthn verification failed');
 
             // Handle successful login
-            window.location.href = '/dashboard';
+            alert('Successfully authenticated with WebAuthn');
         } catch (error) {
             setState(prev => ({
                 ...prev,
@@ -99,7 +99,7 @@ const WebAuthnLogin: React.FC = () => {
             const options = await optionsRes.json();
 
             // 2. Start WebAuthn registration
-            const credential = await startRegistration(options);
+            const credential = await startRegistration({ optionsJSON: options});
 
             // 3. Verify registration with server
             const verificationRes = await fetch('/api/auth/verify-registration', {
